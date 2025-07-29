@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BDU Tələbə Portalı</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background: linear-gradient(to bottom right, #dff5ff, #b4e0f7);
+      color: #003366;
+      overflow-x: hidden;
+    }
+
+    .login-container {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(to bottom right, #dff5ff, #b4e0f7);
+    }
+
+    .login-box {
+      background: rgba(255,255,255,0.85);
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+      width: 320px;
+      text-align: center;
+    }
+
+    .login-box h2 {
+      margin-bottom: 20px;
+      font-weight: 600;
+    }
+
+    .login-box input {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+
+    .login-box .remember {
+      margin: 10px 0;
+      font-size: 0.9rem;
+    }
+
+    .login-box .remember label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .login-box button {
+      width: 100%;
+      padding: 10px;
+      background: #003366;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s;
+      margin-top: 10px;
+    }
+
+    .login-box button:hover {
+      background: #0055aa;
+    }
+
+    .login-box .forgot {
+      margin-top: 10px;
+      font-size: 0.9rem;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background-color: rgba(255, 255, 255, 0.6);
+      padding: 15px 30px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      backdrop-filter: blur(6px);
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .logo {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid #003366;
+    }
+
+    .logo-title {
+      font-size: 1.4rem;
+      font-weight: 600;
+    }
+
+    nav a {
+      margin-left: 20px;
+      text-decoration: none;
+      color: #003366;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover {
+      color: #0055aa;
+    }
+
+    .hero {
+      padding: 100px 30px 40px;
+      text-align: center;
+      animation: fadeIn 1.5s ease-in-out;
+    }
+
+    .hero h1 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+
+    .hero h2 {
+      font-size: 1.3rem;
+      color: #555;
+      font-style: italic;
+      margin-top: 10px;
+    }
+
+    .quote-author {
+      font-style: italic;
+      font-size: 0.9rem;
+      margin-top: 5px;
+      color: #444;
+    }
+
+    .content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      padding: 40px;
+    }
+
+    .card {
+      background-color: rgba(255, 255, 255, 0.7);
+      border-radius: 15px;
+      padding: 20px;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+      cursor: pointer;
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+    }
+
+    .card h3 {
+      margin-bottom: 10px;
+      font-size: 1.2rem;
+      color: #002244;
+    }
+
+    .card p {
+      font-size: 0.95rem;
+      color: #333;
+    }
+
+    .panel-content {
+      display: none;
+      margin-top: 10px;
+      font-size: 0.9rem;
+      color: #222;
+    }
+
+    footer {
+      background-color: #003366;
+      color: white;
+      padding: 20px 30px;
+      text-align: center;
+      margin-top: 40px;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="login-container" id="loginPage">
+    <div class="login-box">
+      <h2>Portala Giriş</h2>
+      <input type="email" id="email" placeholder="Email">
+      <input type="password" id="password" placeholder="Şifrə">
+      
+      <button onclick="login()">Giriş</button>
+      <div class="forgot"><a href="#">Şifrəni unutdun?</a></div>
+    </div>
+  </div>
+
+  <div id="mainContent" class="hidden">
+    <header>
+      <div class="logo-container">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Baku_State_University_light_logo1.png/250px-Baku_State_University_light_logo1.png" alt="BDU logo" class="logo">
+        <span class="logo-title">Bakı Dövlət Universiteti Tələbə Portalı</span>
+      </div>
+      <nav>
+        <a href="#">Ana Səhifə</a>
+        <a href="#">Haqqımızda</a>
+        <a href="#">Müəllimlər</a>
+        <a href="#">Əlaqə</a>
+      </nav>
+    </header>
+    <section class="hero">
+      <h1>Təhsil – millətin gələcəyidir</h1>
+      <div class="quote-author">– Heydər Əliyev</div>
+    </section>
+    <section class="content">
+      <div class="card" onclick="togglePanel(this)">
+        <h3>Müəllimlər Paneli</h3>
+        <p>Bütün müəllimlərin məlumatlarını bu paneldən idarə edə bilərsiniz.</p>
+        <div class="panel-content">
+          BDU-da 1500-dən çox müəllim fəaliyyət göstərir. Onlar 16 fakültədə dərs deyirlər. Əksəriyyəti elmi dərəcəlidir.
+        </div>
+      </div>
+      <div class="card" onclick="togglePanel(this)">
+        <h3>Dərs Cədvəli</h3>
+        <p>Tələbələr üçün interaktiv dərs cədvəli paneli buradadır.</p>
+        <div class="panel-content">
+          Cədvəl LMS vasitəsilə onlayn şəkildə yenilənir. Hər bir tələbə şəxsi hesabından dərs cədvəlini görə bilir.
+        </div>
+      </div>
+      <div class="card" onclick="togglePanel(this)">
+        <h3>Tələbə Məlumatları</h3>
+        <p>Tələbələrin qeydiyyatı və məlumatları ilə tanış olun.</p>
+        <div class="panel-content">
+          BDU-da 24000-dən çox tələbə təhsil alır. Sistem üzərindən qeydiyyat, qiymətlər və iştiraklar izlənilə bilir.
+        </div>
+      </div>
+      <div class="card" onclick="togglePanel(this)">
+        <h3>Əlaqə Paneli</h3>
+        <p>Universitetlə əlaqə saxlamaq üçün məlumatlar.</p>
+        <div class="panel-content">
+          Ünvan: Z.Xəlilov 23, Bakı  AZ1148. Tel: (012) 538-23-32. Email: info@bsu.edu.az
+        </div>
+      </div>
+    </section>
+    <footer>
+      © 2025 BDU Tələbə Portalı. Bütün hüquqlar qorunur.
+    </footer>
+  </div>
+
+  <script>
+    function login() {
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+
+      if (email && password) {
+        document.getElementById("loginPage").style.display = "none";
+        document.getElementById("mainContent").classList.remove("hidden");
+      } else {
+        alert("Zəhmət olmasa email və şifrəni daxil edin");
+      }
+    }
+
+    function togglePanel(card) {
+      const panel = card.querySelector(".panel-content");
+      const isVisible = panel.style.display === "block";
+      panel.style.display = isVisible ? "none" : "block";
+    }
+  </script>
+</body>
+</html>

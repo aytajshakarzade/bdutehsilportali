@@ -118,8 +118,13 @@
       font-weight: 600;
     }
 
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
     nav a {
-      margin-left: 20px;
       text-decoration: none;
       color: #003366;
       font-weight: 500;
@@ -130,6 +135,22 @@
       color: #0055aa;
     }
 
+    /* Hamburger */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      gap: 5px;
+    }
+
+    .hamburger div {
+      width: 25px;
+      height: 3px;
+      background-color: #003366;
+      transition: all 0.3s;
+    }
+
+    /* Hero */
     .hero {
       padding: 100px 30px 40px;
       text-align: center;
@@ -192,6 +213,8 @@
       margin-top: 10px;
       font-size: 0.9rem;
       color: #222;
+      transition: max-height 0.3s ease;
+      overflow: hidden;
     }
 
     footer {
@@ -212,6 +235,31 @@
         transform: translateY(0);
       }
     }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      nav {
+        position: absolute;
+        top: 70px;
+        right: 0;
+        background-color: rgba(255,255,255,0.95);
+        flex-direction: column;
+        width: 200px;
+        display: none;
+        padding: 15px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        border-radius: 8px;
+      }
+      nav a {
+        margin: 10px 0;
+      }
+      .hamburger {
+        display: flex;
+      }
+      nav.active {
+        display: flex;
+      }
+    }
   </style>
 </head>
 <body>
@@ -220,7 +268,6 @@
       <h2>Portala Giriş</h2>
       <input type="email" id="email" placeholder="Email">
       <input type="password" id="password" placeholder="Şifrə">
-      
       <button onclick="login()">Giriş</button>
       <div class="forgot"><a href="#">Şifrəni unutdun?</a></div>
     </div>
@@ -232,7 +279,12 @@
         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Baku_State_University_light_logo1.png/250px-Baku_State_University_light_logo1.png" alt="BDU logo" class="logo">
         <span class="logo-title">Bakı Dövlət Universiteti Tələbə Portalı</span>
       </div>
-      <nav>
+      <div class="hamburger" onclick="toggleHamburger(this)">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+      <nav id="navMenu">
         <a href="#">Ana Səhifə</a>
         <a href="#">Haqqımızda</a>
         <a href="#">Müəllimlər</a>
@@ -295,6 +347,11 @@
       const panel = card.querySelector(".panel-content");
       const isVisible = panel.style.display === "block";
       panel.style.display = isVisible ? "none" : "block";
+    }
+
+    function toggleHamburger(el) {
+      el.classList.toggle("active");
+      document.getElementById("navMenu").classList.toggle("active");
     }
   </script>
 </body>
